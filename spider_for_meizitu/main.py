@@ -1,3 +1,3 @@
-# coding:utf-8
+# coding=utf-8
 from scrapy import cmdline
 cmdline.execute("scrapy crawl meizitu -s JOBDIR=spiderJob".split())

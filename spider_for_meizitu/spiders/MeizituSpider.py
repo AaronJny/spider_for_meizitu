@@ -2,8 +2,6 @@
 import scrapy
 from scrapy.http import Request,HtmlResponse
 import os
-import urllib
-from scrapy.selector import Selector
 
 class MeizituSpider(scrapy.spiders.Spider):
     name='meizitu'#爬虫名
@@ -23,7 +21,7 @@ class MeizituSpider(scrapy.spiders.Spider):
         'User-Agent':'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3013.3 Safari/537.36'
     }
 
-    #重载方法，设置请求头（其实有更简单的方法，在settings里设置default-headers就行了）
+    #重写方法，设置请求头（其实有更简单的方法，在settings里设置default-headers就行了）
     def make_requests_from_url(self,url):
         return Request(url, headers=self.headers,dont_filter=True)
 
@@ -68,3 +66,4 @@ class MeizituSpider(scrapy.spiders.Spider):
         #对所有的图片集进行请求
         for url in links:
             yield Request(url,headers=self.headers,callback=self.parseImageArticle)
+
